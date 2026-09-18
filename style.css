@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Maeve Vernon | Marketing & Management</title>
+
+  <style>
+    /* =========================
+       GLOBAL
+    ========================== */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #f3f0e9;
+      color: #111;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.4;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ::selection {
+      background: #111;
+      color: #fff;
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================== */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 24px 35px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      z-index: 100;
+      mix-blend-mode: difference;
+      color: white;
+    }
+
+    .logo {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 0.5;
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero {
+      min-height: 100vh;
+      padding: 120px 35px 35px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero h1 {
+      font-size: clamp(70px, 14vw, 210px);
+      font-weight: 400;
+      letter-spacing: -8px;
+      line-height: 0.8;
+      text-transform: uppercase;
+    }
+
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      margin-top: 80px;
+    }
+
+    .hero-description {
+      max-width: 550px;
+      font-size: clamp(18px, 2vw, 30px);
+      line-height: 1.25;
+    }
+
+    .hero-details {
+      text-align: right;
+      font-size: 14px;
+      text-transform: uppercase;
+      line-height: 1.6;
+    }
+
+    /* =========================
+       INTRO
+    ========================== */
+
+    .intro {
+      min-height: 90vh;
+      background: #111;
+      color: #f3f0e9;
+
+      display: flex;
+      align-items: center;
+
+      padding: 100px 35px;
+    }
+
+    .intro-text {
+      max-width: 1200px;
+      font-size: clamp(32px, 5vw, 76px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      font-weight: 400;
+    }
+
+    .intro-text span {
+      color: #999;
+    }
+
+    /* =========================
+       SECTION STYLING
+    ========================== */
+
+    section {
+      padding: 100px 35px;
+    }
+
+    .section-label {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 60px;
+    }
+
+    /* =========================
+       EXPERIENCE
+    ========================== */
+
+    .experience {
+      background: #f3f0e9;
+    }
+
+    .experience-item {
+      display: grid;
+      grid-template-columns: 100px 1fr 1fr;
+      gap: 40px;
+
+      padding: 35px 0;
+
+      border-top: 1px solid #aaa;
+
+      transition: all 0.3s ease;
+    }
+
+    .experience-item:last-child {
+      border-bottom: 1px solid #aaa;
+    }
+
+    .experience-item:hover {
+      padding-left: 15px;
+      opacity: 0.65;
+    }
+
+    .experience-number {
+      font-size: 13px;
+    }
+
+    .experience-title h3 {
+      font-size: clamp(25px, 3vw, 45px);
+      font-weight: 400;
+      letter-spacing: -1px;
+    }
+
+    .experience-title p {
+      margin-top: 8px;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .experience-description {
+      max-width: 600px;
+      font-size: 16px;
+    }
+
+    /* =========================
+       FEATURED WORK
+    ========================== */
+
+    .featured {
+      background: #d7d9d0;
+    }
+
+    .featured-heading {
+      font-size: clamp(55px, 9vw, 140px);
+      font-weight: 400;
+      letter-spacing: -5px;
+      line-height: 0.9;
+
+      margin-bottom: 80px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .project {
+      position: relative;
+      min-height: 500px;
+      background: #bbb;
+
+      display: flex;
+      align-items: flex-end;
+
+      padding: 30px;
+
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .project:nth-child(1) {
+      background: #1d392f;
+      color: white;
+    }
+
+    .project:nth-child(2) {
+      background: #e1c9b4;
+    }
+
+    .project:nth-child(3) {
+      background: #9eafa8;
+    }
+
+    .project:nth-child(4) {
+      background: #c4b49e;
+    }
+
+    .project::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      transition: 0.4s;
+    }
+
+    .project:hover::before {
+      background: rgba(0,0,0,0.12);
+    }
+
+    .project-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .project h3 {
+      font-size: clamp(32px, 4vw, 60px);
+      font-weight: 400;
+      letter-spacing: -2px;
+    }
+
+    .project p {
+      margin-top: 10px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* =========================
+       EDUCATION
+    ========================== */
+
+    .education {
+      background: #111;
+      color: white;
+    }
+
+    .education-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+    }
+
+    .education h2 {
+      font-size: clamp(50px, 8vw, 120px);
+      font-weight: 400;
+      letter-spacing: -5px;
+      line-height: 0.9;
+    }
+
+    .education-info h3 {
+      font-size: 35px;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+
+    .education-info p {
+      font-size: 18px;
+      max-width: 650px;
+      margin-bottom: 15px;
+      color: #ccc;
+    }
+
+    .education-info strong {
+      color: white;
+    }
+
+    /* =========================
+       SKILLS
+    ========================== */
+
+    .skills {
+      background: #f3f0e9;
+    }
+
+    .skills-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill {
+      border: 1px solid #111;
+      border-radius: 100px;
+      padding: 14px 25px;
+
+      font-size: 17px;
+
+      transition: 0.3s;
+    }
+
+    .skill:hover {
+      background: #111;
+      color: white;
+    }
+
+    /* =========================
+       CONTACT
+    ========================== */
+
+    .contact {
+      min-height: 90vh;
+
+      background: #c9c1b4;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contact h2 {
+      font-size: clamp(65px, 13vw, 190px);
+      line-height: 0.8;
+      letter-spacing: -8px;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    .contact-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      margin-top: 100px;
+    }
+
+    .contact-email {
+      font-size: clamp(20px, 3vw, 40px);
+      border-bottom: 1px solid #111;
+      width: fit-content;
+    }
+
+    .contact-links {
+      text-align: right;
+      font-size: 15px;
+      line-height: 2;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+      background: #c9c1b4;
+
+      display: flex;
+      justify-content: space-between;
+
+      padding: 25px 35px;
+
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+
+    @media (max-width: 800px) {
+
+      nav {
+        padding: 20px;
+      }
+
+      .nav-links {
+        gap: 15px;
+      }
+
+      .hero,
+      section {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .hero h1 {
+        letter-spacing: -4px;
+      }
+
+      .hero-bottom,
+      .education-grid,
+      .contact-bottom {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .hero-details,
+      .contact-links {
+        text-align: left;
+      }
+
+      .experience-item {
+        grid-template-columns: 40px 1fr;
+      }
+
+      .experience-description {
+        grid-column: 2;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project {
+        min-height: 400px;
+      }
+
+      .contact h2 {
+        letter-spacing: -4px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <nav>
+    <a href="#home" class="logo">MAEVE VERNON</a>
+
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+
+  <main id="home" class="hero">
+
+    <h1>
+      MAEVE<br>
+      VERNON
+    </h1>
+
+    <div class="hero-bottom">
+
+      <p class="hero-description">
+        Marketing, management, and people-focused leader creating
+        engaging experiences through strategy, communication,
+        creativity, and community.
+      </p>
+
+      <div class="hero-details">
+        Fairfield University<br>
+        Marketing + Management<br>
+        HR Concentration<br>
+        Class of 2027
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- ABOUT -->
+
+  <section id="about" class="intro">
+
+    <p class="intro-text">
+      I'm a marketing and management student at
+      <span>Fairfield University's Dolan School of Business</span>
+      with experience in leadership, social media, athletics,
+      marketing, and community building.
+      <span>
+        I am especially interested in work that brings together
+        people, creativity, communication, and strategy.
+      </span>
+    </p>
+
+  </section>
+
+
+  <!-- EXPERIENCE -->
+
+  <section id="experience" class="experience">
+
+    <div class="section-label">Selected Experience — 01</div>
+
+
+    <div class="experience-item">
+
+      <div class="experience-number">01</div>
+
+      <div class="experience-title">
+        <h3>IRHA President</h3>
+        <p>Fairfield University</p>
+      </div>
+
+      <div class="experience-description">
+        Lead 12 residence hall boards and oversee 175 student
+        leaders responsible for building community across campus.
+        Manage recruitment, training, weekly leadership meetings,
+        programming, and communication with university administration.
+      </div>
+
+    </div>
+
+
+    <div class="experience-item">
+
+      <div class="experience-number">02</div>
+
+      <div class="experience-title">
+        <h3>Social Media Manager</h3>
+        <p>Fairfield Men's Rugby</p>
+      </div>
+
+      <div class="experience-description">
+        Manage Instagram, Facebook, and TikTok strategy and create
+        athlete-focused digital content. Led media-day production
+        for more than 80 athletes and helped develop the StagsGiving
+        campaign that generated $63,000 from 120 donors.
+      </div>
+
+    </div>
+
+
+    <div class="experience-item">
+
+      <div class="experience-number">03</div>
+
+      <div class="experience-title">
+        <h3>Social Media Intern</h3>
+        <p>Fairfield Athletics</p>
+      </div>
+
+      <div class="experience-description">
+        Created photography and short-form video content for
+        Division I athletics, including game recaps, athlete
+        features, interviews, and promotional content.
+      </div>
+
+    </div>
+
+
+    <div class="experience-item">
+
+      <div class="experience-number">04</div>
+
+      <div class="experience-title">
+        <h3>Marketing Intern</h3>
+        <p>The Boatyard · Long Beach Island</p>
+      </div>
+
+      <div class="experience-description">
+        Created social media content, advertisements, and reels
+        promoting events and specials while supporting customer
+        operations in a fast-paced hospitality environment.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FEATURED WORK -->
+
+  <section id="work" class="featured">
+
+    <div class="section-label">Selected Work — 02</div>
+
+    <h2 class="featured-heading">
+      WORK &<br>
+      PROJECTS
+    </h2>
+
+
+    <div class="project-grid">
+
+      <div class="project">
+
+        <div class="project-content">
+          <h3>Fairfield Rugby</h3>
+          <p>Social Media · Content Strategy · Photography</p>
+        </div>
+
+      </div>
+
+
+      <div class="project">
+
+        <div class="project-content">
+          <h3>StagsGiving</h3>
+          <p>Fundraising · Storytelling · Digital Campaign</p>
+        </div>
+
+      </div>
+
+
+      <div class="project">
+
+        <div class="project-content">
+          <h3>IRHA</h3>
+          <p>Leadership · Events · Community Building</p>
+        </div>
+
+      </div>
+
+
+      <div class="project">
+
+        <div class="project-content">
+          <h3>Fairfield Athletics</h3>
+          <p>Sports Media · Video · Photography</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- EDUCATION -->
+
+  <section class="education">
+
+    <div class="section-label">Education — 03</div>
+
+
+    <div class="education-grid">
+
+      <h2>
+        FAIRFIELD<br>
+        UNIVERSITY
+      </h2>
+
+      <div class="education-info">
+
+        <h3>Dolan School of Business</h3>
+
+        <p>
+          <strong>Bachelor of Science · Expected May 2027</strong>
+        </p>
+
+        <p>
+          Double major in Marketing and Management with a
+          concentration in Human Resources.
+        </p>
+
+        <p>
+          <strong>Honors:</strong> Dean's List
+        </p>
+
+        <p>
+          Coursework includes Managing Human Resources,
+          International Business, Business Analytics,
+          Leading & Managing People, Managing Non-Profit
+          Organizations, and Legal Environment of Business.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SKILLS -->
+
+  <section class="skills">
+
+    <div class="section-label">Skills & Tools — 04</div>
+
+    <div class="skills-wrapper">
+
+      <div class="skill">Marketing</div>
+      <div class="skill">Social Media Strategy</div>
+      <div class="skill">Leadership</div>
+      <div class="skill">Human Resources</div>
+      <div class="skill">Content Creation</div>
+      <div class="skill">Event Planning</div>
+      <div class="skill">Photography</div>
+      <div class="skill">Video Editing</div>
+      <div class="skill">Canva</div>
+      <div class="skill">Final Cut Pro</div>
+      <div class="skill">Adobe Lightroom</div>
+      <div class="skill">Google Workspace</div>
+      <div class="skill">Microsoft Office</div>
+      <div class="skill">Instagram</div>
+      <div class="skill">TikTok</div>
+      <div class="skill">Facebook</div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section id="contact" class="contact">
+
+    <h2>
+      LET'S<br>
+      CONNECT.
+    </h2>
+
+
+    <div class="contact-bottom">
+
+      <div>
+
+        <a
+          class="contact-email"
+          href="mailto:maeve.vernon@student.fairfield.edu"
+        >
+          maeve.vernon@student.fairfield.edu
+        </a>
+
+      </div>
+
+
+      <div class="contact-links">
+
+        <a href="#">LinkedIn ↗</a><br>
+        Fairfield, Connecticut<br>
+        Allentown, New Jersey
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <span>Maeve Vernon © 2026</span>
+
+    <a href="#home">
+      Back to top ↑
+    </a>
+
+  </footer>
+
+
+  <!-- SMALL INTERACTION SCRIPT -->
+
+  <script>
+
+    // Fade navigation slightly when scrolling down
+
+    const nav = document.querySelector("nav");
+
+    window.addEventListener("scroll", () => {
+
+      if (window.scrollY > 100) {
+        nav.style.opacity = "0.85";
+      } else {
+        nav.style.opacity = "1";
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>
